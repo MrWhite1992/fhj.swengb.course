@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 
-import fhj.swengb.{Students, Speakers}
+import fhj.swengb.Speakers
 
 import scala.util.control.NonFatal
 
@@ -59,14 +59,36 @@ class Avatarix extends javafx.application.Application {
 
 
 class AvatarixController extends Initializable {
-  @FXML var borderPane: BorderPane = _
-  @FXML var iview_00_g1 : ImageView = _
+  @FXML var grid_g1: GridPane = _
+  @FXML var grid_g2: GridPane = _
+  @FXML var grid_g3: GridPane = _
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
     val url: String = Students.mwageneder.gitHubUser.avatarUrl.toString
 
-    //borderPane.setCenter(new ImageView(new Image(url)))
-    iview_00_g1.setImage(new Image(url))
+
+
+    var counter1 = 0;
+    for (student <- Students.studentGroup1) {
+      grid_g1.getChildren.toArray()(counter1).asInstanceOf[ImageView].setImage(new Image(student.gitHubUser.avatarUrl.toString))
+      counter1 += 1
+    }
+
+
+    var counter2 = 0;
+    for (student <- Students.studentGroup2) {
+      grid_g2.getChildren.toArray()(counter2).asInstanceOf[ImageView].setImage(new Image(student.gitHubUser.avatarUrl.toString))
+      counter2 += 1
+    }
+
+
+    var counter3 = 0;
+    for (student <- Students.studentGroup3) {
+      grid_g3.getChildren.toArray()(counter3).asInstanceOf[ImageView].setImage(new Image(student.gitHubUser.avatarUrl.toString))
+      counter3 += 1
+    }
+
+
   }
 
 }
